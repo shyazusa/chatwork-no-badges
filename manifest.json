@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Chatwork No Badges",
+  "version": "1.0",
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://www.chatwork.com/*"],
+      "js": [
+        "src/jquery-2.2.1.min.js",
+        "src/myscript.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}
