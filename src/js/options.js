@@ -57,7 +57,7 @@ $(function() {
     roomIds = [];
     $('#roomIds').children('div').each(function(i) {
       var v;
-      v = $(this).children('input').val();
+      v = $(this).children('input').val().replace(/[^0-9^\.]/g, '');
       if (!isNaN(v)) {
         return roomIds[`${i}`] = v;
       }
