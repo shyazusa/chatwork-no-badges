@@ -6,20 +6,22 @@ $ ->
   addAddButton = ->
     $ '<input>',
       id: 'add',
+      class: 'btn btn-primary btn-sm col-sm-6'
       type: 'button'
       value: 'Add'
-    .appendTo '#mainSetting'
+    .appendTo '#buttons'
 
   addSaveButton = ->
     $ '<input>',
       id: 'save',
+      class: 'btn btn-success btn-sm col-sm-6'
       type: 'button'
       value: 'Save'
-    .appendTo '#mainSetting'
+    .appendTo '#buttons'
 
   addRemoveButton = (roomIdLength) ->
     $ '<input>',
-      class: 'delete'
+      class: 'delete btn btn-danger btn-sm col-sm-6'
       type: 'button'
       "data-id": roomIdLength
       value: 'Delete'
@@ -29,18 +31,18 @@ $ ->
     roomIdLength = $('.roomId').length
     $ '<div>',
       id: "roomId_#{roomIdLength}"
-      class: 'roomId'
+      class: 'roomId container col-sm-6'
     .appendTo '#roomIds'
     if rid
       $ '<input>',
-        class: "roomId #{rid}"
+        class: "roomId #{rid} col-sm-6"
         type: 'text'
         value: rid
       .appendTo "#roomId_#{roomIdLength}"
     else
       $ '<input>',
         id: "roomId_#{roomIdLength}"
-        class: 'roomId'
+        class: 'roomId col-sm-6'
         type: 'text'
       .appendTo "#roomId_#{roomIdLength}"
     addRemoveButton "#{roomIdLength}"
@@ -71,5 +73,9 @@ $ ->
       for rid in rids
         addRoomId rid
   addBrTag()
+  $ '<div>',
+    id: 'buttons'
+    class: 'container col-sm-6'
+  .appendTo '#mainSetting'
   addAddButton()
   addSaveButton()

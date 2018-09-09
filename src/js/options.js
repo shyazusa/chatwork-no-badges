@@ -8,20 +8,22 @@ $(function() {
   addAddButton = function() {
     return $('<input>', {
       id: 'add',
+      class: 'btn btn-primary btn-sm col-sm-6',
       type: 'button',
       value: 'Add'
-    }).appendTo('#mainSetting');
+    }).appendTo('#buttons');
   };
   addSaveButton = function() {
     return $('<input>', {
       id: 'save',
+      class: 'btn btn-success btn-sm col-sm-6',
       type: 'button',
       value: 'Save'
-    }).appendTo('#mainSetting');
+    }).appendTo('#buttons');
   };
   addRemoveButton = function(roomIdLength) {
     return $('<input>', {
-      class: 'delete',
+      class: 'delete btn btn-danger btn-sm col-sm-6',
       type: 'button',
       "data-id": roomIdLength,
       value: 'Delete'
@@ -32,18 +34,18 @@ $(function() {
     roomIdLength = $('.roomId').length;
     $('<div>', {
       id: `roomId_${roomIdLength}`,
-      class: 'roomId'
+      class: 'roomId container col-sm-6'
     }).appendTo('#roomIds');
     if (rid) {
       $('<input>', {
-        class: `roomId ${rid}`,
+        class: `roomId ${rid} col-sm-6`,
         type: 'text',
         value: rid
       }).appendTo(`#roomId_${roomIdLength}`);
     } else {
       $('<input>', {
         id: `roomId_${roomIdLength}`,
-        class: 'roomId',
+        class: 'roomId col-sm-6',
         type: 'text'
       }).appendTo(`#roomId_${roomIdLength}`);
     }
@@ -89,6 +91,10 @@ $(function() {
     }
   });
   addBrTag();
+  $('<div>', {
+    id: 'buttons',
+    class: 'container col-sm-6'
+  }).appendTo('#mainSetting');
   addAddButton();
   return addSaveButton();
 });
