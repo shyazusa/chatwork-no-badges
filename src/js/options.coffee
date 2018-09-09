@@ -43,16 +43,16 @@ $ ->
         class: 'roomId'
         type: 'text'
       .appendTo "#roomId_#{roomIdLength}"
-    addRemoveButton("#{roomIdLength}")
+    addRemoveButton "#{roomIdLength}"
     addBrTag()
 
   saveRoomIds = ->
     roomIds = []
     $('#roomIds').children('div').each (i) ->
       v = $(@).children('input').val()
-      if !isNaN(v)
+      if !isNaN v
         roomIds["#{i}"] = v
-    chrome.storage.local.set {rids: roomIds.join(',')}
+    chrome.storage.local.set {rids: roomIds.join ','}
 
   $(document).on 'click', '#add', ->
     addRoomId()
@@ -66,7 +66,7 @@ $ ->
     saveRoomIds()
 
   chrome.storage.local.get (item) ->
-    rids = item.rids.split(',')
+    rids = item.rids.split ','
     if rids
       for rid in rids
         addRoomId rid
