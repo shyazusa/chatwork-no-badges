@@ -51,7 +51,7 @@ $ ->
   saveRoomIds = ->
     roomIds = []
     $('#roomIds').children('div').each (i) ->
-      v = $(@).children('input').val()
+      v = $(@).children('input').val().replace /[^0-9^\.]/g, ''
       if !isNaN v
         roomIds["#{i}"] = v
     chrome.storage.local.set {rids: roomIds.join ','}
