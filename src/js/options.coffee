@@ -49,11 +49,15 @@ $ ->
     addBrTag()
 
   saveRoomIds = ->
+    all_rooms = $('#all_rooms').prop 'checked'
+    if all_rooms
+      $('.roomId').remove()
     roomIds = []
     $('#roomIds').children('div').each (i) ->
       v = $(@).children('input').val().replace /[^0-9^\.]/g, ''
       if !isNaN v
         roomIds["#{i}"] = v
+    chrome.storage.local.set {all_rooms: all_rooms}
     chrome.storage.local.set {rids: roomIds.join ','}
 
   $(document).on 'click', '#add', ->
@@ -68,6 +72,9 @@ $ ->
     saveRoomIds()
 
   chrome.storage.local.get (item) ->
+    all_rooms = item.all_rooms
+    if all_rooms
+      $('#all_rooms').prop 'checked', true
     rids = item.rids.split ','
     if rids
       for rid in rids

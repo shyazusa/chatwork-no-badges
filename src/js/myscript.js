@@ -1,5 +1,5 @@
 $(function() {
-  var addCss, addStyleTag, badgeRule, fontRule;
+  var addCss, addStyleTag, allRoomsBadgeRule, allRoomsFontRule, badgeRule, fontRule;
   addStyleTag = function() {
     var styleTag;
     styleTag = document.createElement('style');
@@ -16,19 +16,29 @@ $(function() {
   fontRule = function(rid) {
     return addCss(`li[data-rid="${rid}"]\n.roomListItem__roomName--unread {\n  font-weight: normal;\n}`);
   };
+  allRoomsBadgeRule = function() {
+    return addCss(".roomListBadges__unreadBadge:not(\n  .roomListBadges__unreadBadge--hasMemtion\n) {\n  display: none;\n}");
+  };
+  allRoomsFontRule = function() {
+    return addCss(".roomListItem__roomName--unread {\n  font-weight: normal;\n}");
+  };
   return chrome.storage.local.get(function(item) {
-    var i, len, results, rid, rids;
-    rids = item.rids.split(',');
-    if (rids) {
-      results = [];
-      for (i = 0, len = rids.length; i < len; i++) {
-        rid = rids[i];
-        badgeRule(rid);
-        results.push(fontRule(rid));
-      }
-      return results;
+    var all_rooms, i, len, results, rid, rids;
+    all_rooms = item.all_rooms;
+    if (all_rooms) {
+      allRoomsBadgeRule();
+      return allRoomsFontRule();
     } else {
-      return console.log('rids is no');
+      rids = item.rids.split(',');
+      if (rids) {
+        results = [];
+        for (i = 0, len = rids.length; i < len; i++) {
+          rid = rids[i];
+          badgeRule(rid);
+          results.push(fontRule(rid));
+        }
+        return results;
+      }
     }
   });
 });

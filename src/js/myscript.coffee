@@ -25,11 +25,31 @@ $ ->
         font-weight: normal;
       }
     """
+
+  allRoomsBadgeRule = () ->
+    addCss """
+      .roomListBadges__unreadBadge:not(
+        .roomListBadges__unreadBadge--hasMemtion
+      ) {
+        display: none;
+      }
+    """
+
+  allRoomsFontRule = () ->
+    addCss """
+      .roomListItem__roomName--unread {
+        font-weight: normal;
+      }
+    """
+
   chrome.storage.local.get (item) ->
-    rids = item.rids.split(',')
-    if rids
-      for rid in rids
-        badgeRule rid
-        fontRule rid
+    all_rooms = item.all_rooms
+    if all_rooms
+      allRoomsBadgeRule()
+      allRoomsFontRule()
     else
-      console.log('rids is no')
+      rids = item.rids.split(',')
+      if rids
+        for rid in rids
+          badgeRule rid
+          fontRule rid
