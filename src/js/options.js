@@ -53,7 +53,11 @@ $(function() {
     return addBrTag();
   };
   saveRoomIds = function() {
-    var roomIds;
+    var all_rooms, roomIds;
+    all_rooms = $('#all_rooms').prop('checked');
+    if (all_rooms) {
+      $('.roomId').remove();
+    }
     roomIds = [];
     $('#roomIds').children('div').each(function(i) {
       var v;
@@ -61,6 +65,9 @@ $(function() {
       if (!isNaN(v)) {
         return roomIds[`${i}`] = v;
       }
+    });
+    chrome.storage.local.set({
+      all_rooms: all_rooms
     });
     return chrome.storage.local.set({
       rids: roomIds.join(',')
@@ -79,7 +86,11 @@ $(function() {
     return saveRoomIds();
   });
   chrome.storage.local.get(function(item) {
-    var j, len, results, rid, rids;
+    var all_rooms, j, len, results, rid, rids;
+    all_rooms = item.all_rooms;
+    if (all_rooms) {
+      $('#all_rooms').prop('checked', true);
+    }
     rids = item.rids.split(',');
     if (rids) {
       results = [];
