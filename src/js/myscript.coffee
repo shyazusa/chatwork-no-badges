@@ -53,4 +53,3 @@ $ ->
         for rid in rids
           badgeRule rid
           fontRule rid
-    console.log item

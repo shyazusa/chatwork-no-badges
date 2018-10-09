@@ -23,21 +23,22 @@ $(function() {
     return addCss(".roomListItem__roomName--unread {\n  font-weight: normal;\n}");
   };
   return chrome.storage.local.get(function(item) {
-    var all_rooms, i, len, rid, rids;
+    var all_rooms, i, len, results, rid, rids;
     all_rooms = item.all_rooms;
     if (all_rooms) {
       allRoomsBadgeRule();
-      allRoomsFontRule();
+      return allRoomsFontRule();
     } else {
       rids = item.rids.split(',');
       if (rids) {
+        results = [];
         for (i = 0, len = rids.length; i < len; i++) {
           rid = rids[i];
           badgeRule(rid);
-          fontRule(rid);
+          results.push(fontRule(rid));
         }
+        return results;
       }
     }
-    return console.log(item);
   });
 });
