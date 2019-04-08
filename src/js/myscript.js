@@ -11,16 +11,16 @@ $(function() {
     return addStyleTag().sheet.insertRule(rule, 0);
   };
   badgeRule = function(rid) {
-    return addCss(`li[data-rid="${rid}"]\n.roomListBadges__unreadBadge:not(\n  .roomListBadges__unreadBadge--hasMemtion\n) {\n  display: none;\n}`);
+    return addCss(`li[data-rid="${rid}"]\n._unreadBadge {\n  display: none;\n}`);
   };
   fontRule = function(rid) {
-    return addCss(`li[data-rid="${rid}"]\n.roomListItem__roomName--unread {\n  font-weight: normal;\n}`);
+    return addCss(`li[data-rid="${rid}"]\n.ijcItZ {\n  color: rgb(77, 77, 77);\n  font-weight: normal;\n}`);
   };
   allRoomsBadgeRule = function() {
-    return addCss(".roomListBadges__unreadBadge:not(\n  .roomListBadges__unreadBadge--hasMemtion\n) {\n  display: none;\n}");
+    return addCss("._unreadBadge {\n  display: none;\n}");
   };
   allRoomsFontRule = function() {
-    return addCss(".roomListItem__roomName--unread {\n  font-weight: normal;\n}");
+    return addCss(".ijcItZ {\n  color: rgb(77, 77, 77);\n  font-weight: normal;\n}");
   };
   return chrome.storage.local.get(function(item) {
     var all_rooms, i, len, results, rid, rids;

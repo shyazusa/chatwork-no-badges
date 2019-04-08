@@ -11,9 +11,7 @@ $ ->
   badgeRule = (rid) ->
     addCss """
       li[data-rid="#{rid}"]
-      .roomListBadges__unreadBadge:not(
-        .roomListBadges__unreadBadge--hasMemtion
-      ) {
+      ._unreadBadge {
         display: none;
       }
     """
@@ -21,23 +19,23 @@ $ ->
   fontRule = (rid) ->
     addCss """
       li[data-rid="#{rid}"]
-      .roomListItem__roomName--unread {
+      .ijcItZ {
+        color: rgb(77, 77, 77);
         font-weight: normal;
       }
     """
 
   allRoomsBadgeRule = () ->
     addCss """
-      .roomListBadges__unreadBadge:not(
-        .roomListBadges__unreadBadge--hasMemtion
-      ) {
+      ._unreadBadge {
         display: none;
       }
     """
 
   allRoomsFontRule = () ->
     addCss """
-      .roomListItem__roomName--unread {
+      .ijcItZ {
+        color: rgb(77, 77, 77);
         font-weight: normal;
       }
     """
