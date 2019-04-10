@@ -11,7 +11,7 @@ $ ->
   badgeRule = (rid) ->
     addCss """
       li[data-rid="#{rid}"]
-      ._unreadBadge {
+      ._unreadBadge:not(.kDzFLX) {
         display: none;
       }
     """
@@ -27,7 +27,7 @@ $ ->
 
   allRoomsBadgeRule = () ->
     addCss """
-      ._unreadBadge {
+      ._unreadBadge:not(.kDzFLX) {
         display: none;
       }
     """
