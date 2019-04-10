@@ -11,13 +11,13 @@ $(function() {
     return addStyleTag().sheet.insertRule(rule, 0);
   };
   badgeRule = function(rid) {
-    return addCss(`li[data-rid="${rid}"]\n._unreadBadge {\n  display: none;\n}`);
+    return addCss(`li[data-rid="${rid}"]\n._unreadBadge:not(.kDzFLX) {\n  display: none;\n}`);
   };
   fontRule = function(rid) {
     return addCss(`li[data-rid="${rid}"]\n.ijcItZ {\n  color: rgb(77, 77, 77);\n  font-weight: normal;\n}`);
   };
   allRoomsBadgeRule = function() {
-    return addCss("._unreadBadge {\n  display: none;\n}");
+    return addCss("._unreadBadge:not(kDzFLX) {\n  display: none;\n}");
   };
   allRoomsFontRule = function() {
     return addCss(".ijcItZ {\n  color: rgb(77, 77, 77);\n  font-weight: normal;\n}");
